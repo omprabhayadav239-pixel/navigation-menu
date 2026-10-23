@@ -1,0 +1,74 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f6ef;
+  color: #21342b;
+  font: 16px Arial, sans-serif;
+}
+.navigation {
+  position: relative;
+  min-height: 76px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 3px 18px #21342b12;
+}
+.logo { color: inherit; font-size: 22px; font-weight: bold; text-decoration: none; }
+.menu {
+  position: absolute;
+  top: 76px;
+  right: 8%;
+  z-index: 2;
+  display: grid;
+  min-width: 190px;
+  gap: 0;
+  padding: 10px 20px;
+  background: white;
+  box-shadow: 0 10px 20px #21342b18;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity .2s, transform .2s;
+}
+.menu.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.menu a, .button { color: inherit; text-decoration: none; }
+.menu a { padding: 12px 0; border-bottom: 1px solid #edf0e9; transition: color .2s; }
+.menu a:hover, .menu a.active { color: #63883e; }
+.button {
+  padding: 12px 18px;
+  border-radius: 24px;
+  background: #d8f29b;
+  transition: transform .2s, background .2s;
+}
+.button:hover { background: #c8e982; transform: translateY(-2px); }
+.button span { margin-left: 8px; }
+.menu-toggle {
+  order: 3;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  border: 1px solid #dce2d8;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+.menu-toggle span { width: 18px; height: 2px; background: #21342b; transition: transform .2s, opacity .2s; }
+.menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 640px) {
+  .navigation { min-height: 68px; padding: 0 20px; }
+  .menu {
+    top: 68px;
+    right: 0;
+    left: 0;
+  }
+  .menu-toggle { z-index: 3; }
+  .button { display: none; }
+}
